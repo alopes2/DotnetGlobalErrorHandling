@@ -9,7 +9,7 @@ namespace ErrorHandling.Api.Models
 
         public string Message { get; set; } = "An unexpected error occurred.";
 
-        public override string ToString()
+        public string ToJsonString()
         {
             return JsonSerializer.Serialize(this);
         }

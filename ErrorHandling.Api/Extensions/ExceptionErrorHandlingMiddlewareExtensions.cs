@@ -1,4 +1,5 @@
 using System.Net;
+using ErrorHandling.Api.Middlewares;
 using ErrorHandling.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -29,9 +30,16 @@ namespace ErrorHandling.Api.Extensions
 
                     context.Response.StatusCode = (int) errorResponse.StatusCode;
                     context.Response.ContentType = "application/json";
-                    await context.Response.WriteAsync(errorResponse.ToString());
+                    await context.Response.WriteAsync(errorResponse.ToJsonString());
                 });
             });
+
+            return app;
+        }
+
+        public static IApplicationBuilder UseGlobalExceptionErrorHandler(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             return app;
         }
