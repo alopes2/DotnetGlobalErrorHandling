@@ -3,11 +3,11 @@ using System.Net;
 
 namespace ErrorHandling.Api.Models
 {
-    public class HttpErrorException : Exception
+    public class HttpException : Exception
     {
         public HttpStatusCode StatusCode { get; set; }
 
-        public HttpErrorException(HttpStatusCode statusCode, string message)
+        public HttpException(HttpStatusCode statusCode, string message)
             : base(message)
         { 
             StatusCode = statusCode;

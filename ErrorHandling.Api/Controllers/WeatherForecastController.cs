@@ -29,7 +29,7 @@ namespace ErrorHandling.Api.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
-            throw new HttpErrorException(HttpStatusCode.NotFound, "Something happened.");
+            throw new HttpException(HttpStatusCode.NotFound, "Something happened.");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

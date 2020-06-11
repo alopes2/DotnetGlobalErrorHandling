@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ErrorHandling.Api.Extensions
 {
-    public static class ExceptionErrorHandlingMiddlewareExtensions
+    public static class ExceptionHandlingMiddlewareExtensions
     {
         public static IApplicationBuilder UseNativeGlobalExceptionErrorHandler(this IApplicationBuilder app)
         {
@@ -22,10 +22,10 @@ namespace ErrorHandling.Api.Extensions
 
                     var errorResponse = new ErrorResponse();
 
-                    if (exception is HttpErrorException httpErrorException)
+                    if (exception is HttpException httpException)
                     {
-                        errorResponse.StatusCode = httpErrorException.StatusCode;
-                        errorResponse.Message = httpErrorException.Message;
+                        errorResponse.StatusCode = httpException.StatusCode;
+                        errorResponse.Message = httpException.Message;
                     }
 
                     context.Response.StatusCode = (int) errorResponse.StatusCode;
